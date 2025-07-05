@@ -1,0 +1,33 @@
+import { integer, pgEnum, pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { id, createdAt, updatedAt } from "../schemaHelpers";
+import { CourseTable } from "./course";
+import { relations } from "drizzle-orm";
+
+export const courseSectionStatuses = ['public', 'private'] as const;
+export type CourseSectionStatus = (typeof courseSectionStatuses)[number];
+export const courseSectionEnum = pgEnum(
+    'course_section_status',
+    courseSectionStatuses
+);
+
+export const CourseSectionTable = pgTable('course_sections', {
+    id,
+    name: text().notNull(),
+    status: courseSectionEnum().notNull().default('private'),
+    order: integer().notNull(),
+    courseId: uuid()
+        .notNull()
+        .references(() => CourseTable.id, { onDelete: 'cascade' }),
+    createdAt,
+    updatedAt,
+});
+
+export const CourseSectionsRelationShips = relations(
+    CourseSectionTable,
+    ({ many, one }) => ({
+        course: one(CourseTable, {
+            fields: [CourseSectionTable.courseId],
+            references: [CourseTable.id]
+        })
+    })
+)
