@@ -11,10 +11,10 @@ export const PurchaseTable = pgTable('purchases', {
         .$type<{ name: string; description: string; imageUrl: string }>(),
     userId: uuid()
         .notNull()
-        .references(() => UserTable.id, { onDelete: 'cascade' }),
+        .references(() => UserTable.id, { onDelete: 'restrict' }),
     productId: uuid()
         .notNull()
-        .references(() => ProductTable.id, { onDelete: 'cascade' }),
+        .references(() => ProductTable.id, { onDelete: 'restrict' }),
     stripeSessionId: text().notNull().unique(),
     refundedAt: timestamp({ withTimezone: true }),
     createdAt,
