@@ -3,6 +3,7 @@ import { id, createdAt, updatedAt } from "../schemaHelpers";
 import { CourseTable } from "./course";
 import { relations } from "drizzle-orm";
 import { CourseSectionTable } from "./courseSection";
+import { UserLessonsCompleteTable } from "./userLessonComplete";
 
 export const lessonsStatuses = ['public', 'private', 'preview'] as const;
 export type LessonsStatus = (typeof lessonsStatuses)[number];
