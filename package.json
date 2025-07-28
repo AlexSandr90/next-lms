@@ -9,9 +9,11 @@
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "tailwind:init": "tailwindcss init -p"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@clerk/nextjs": "^6.25.4",
     "@t3-oss/env-nextjs": "^0.13.8",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -31,10 +33,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "drizzle-kit": "^0.31.4",
     "eslint": "^9",
     "eslint-config-next": "15.4.0-canary.35",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }
 }
