@@ -1,6 +1,6 @@
 import {ReactNode, Suspense} from "react";
 import Link from "next/link";
-import {SignedIn} from "@clerk/nextjs";
+import {SignedIn, SignedOut} from "@clerk/nextjs";
 
 export default function ConsumerLayout({children}): Readonly<{ children: ReactNode }> {
     return (
@@ -28,6 +28,11 @@ function Navbar() {
                         </Link>
                         <div className="size-8 self-center"></div>
                     </SignedIn>
+                </Suspense>
+                <Suspense>
+                    <SignedOut>
+                        <div>Sing In</div>
+                    </SignedOut>
                 </Suspense>
             </nav>
         </header>
