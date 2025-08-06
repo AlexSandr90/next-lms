@@ -42,16 +42,16 @@ export default clerkMiddleware(async (req, res) => {
     return new NextResponse(null, {status: 403})
   }
 
-  if (isAdminRoute(req)) {
-    const user = await auth.protect()
-    if (user.sessionClaims.role !== "admin") {
-      return new NextResponse(null, {status: 404})
-    }
-  }
-
-  if (!isPublicRoute(req)) {
-    await auth.protect()
-  }
+  // if (isAdminRoute(req)) {
+  //   const user = await auth.protect()
+  //   if (user.sessionClaims.role !== "admin") {
+  //     return new NextResponse(null, {status: 404})
+  //   }
+  // }
+  //
+  // if (!isPublicRoute(req)) {
+  //   await auth.protect()
+  // }
 
   if (!decision.ip.isVpn() && !decision.ip.isProxy()) {
     const headers = new Headers(req.headers)
