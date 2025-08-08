@@ -20,14 +20,16 @@ export async function getCurrentUser({allData = false} = {}) {
     userId: sessionClaims?.dbId,
     role: sessionClaims?.role,
     user: allData && sessionClaims?.dbId !== null
-      ? getUser(sessionClaims.dbId)
+      ? await getUser(sessionClaims.dbId)
       : undefined,
     redirectToSignIn,
   }
 }
 
 export function syncClerkUserMetadata(user: {
-  id: string; clerkUserId: string; role: UserRole
+  id: string;
+  clerkUserId: string;
+  role: UserRole
 }) {
   return client.users.updateUserMetadata(user.clerkUserId, {
     publicMetadata: {
@@ -42,5 +44,7 @@ async function getUser(id: string) {
   cacheTag(getUserIdTag(id));
   console.log('Called');
 
-  return db.query.UserTable.findFirst({where: eq(UserTable.id, id)})
+  return db.query.UserTable.findFirst({
+    where: eq(UserTable.id, id)
+  })
 }
