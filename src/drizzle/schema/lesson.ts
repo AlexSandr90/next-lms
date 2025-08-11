@@ -7,7 +7,7 @@ import { UserLessonsCompleteTable } from "./userLessonComplete";
 
 export const lessonsStatuses = ['public', 'private', 'preview'] as const;
 export type LessonsStatus = (typeof lessonsStatuses)[number];
-export const courseSectionEnum = pgEnum(
+export const lessonSectionEnum = pgEnum(
     'course_section_status',
     lessonsStatuses
 );
@@ -15,11 +15,11 @@ export const courseSectionEnum = pgEnum(
 export const LessonTable = pgTable('lessons', {
     id,
     name: text().notNull(),
-    status: courseSectionEnum().notNull().default('private'),
+    status: lessonSectionEnum().notNull().default('private'),
     order: integer().notNull(),
     sectionId: uuid()
         .notNull()
-        .references(() => CourseTable.id, { onDelete: 'cascade' }),
+        .references(() => CourseSectionTable.id, { onDelete: 'cascade' }),
     createdAt,
     updatedAt,
 });
