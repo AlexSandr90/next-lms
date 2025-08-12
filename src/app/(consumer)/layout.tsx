@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button";
 import {getCurrentUser} from '@/services/clerk';
 import {canAccessAdminPages} from "@/permissions/general";
 
-export default function ConsumerLayout({children}): Readonly<{ children: ReactNode }> {
+export default function ConsumerLayout({children}: { children: ReactNode }) {
   return (
     <>
       <Navbar/>
@@ -21,7 +21,7 @@ function Navbar() {
         <Link className='mr-auto text-lg hover:underline flex items-center px-2' href='/'>
           OH Studio
         </Link>
-        <Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
           <SignedIn>
             <AdminLink/>
             <Link className='hover:bg-accent/10 flex items-center px-2' href='/courses'>
