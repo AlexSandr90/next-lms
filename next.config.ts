@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
     useCache: true,
   },
+  allowedDevOrigins: [
+    'http://172.21.32.1:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+  ]
 };
 
 export default nextConfig;

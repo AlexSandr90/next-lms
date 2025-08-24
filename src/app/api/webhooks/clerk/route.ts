@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const svixSignature = headerPayload.get('svix-signature');
 
   if (!svixId || !svixTimestamp || !svixSignature) {
-    return new Response('Error occured -- no svix headers', {
+    return new Response('Error occurred -- no svix headers', {
       status: 400,
     })
   }
@@ -47,7 +47,8 @@ export async function POST(req: Request) {
       if (event.type === 'user.created') {
         const user = await insertUser({
           clerkUserId: event.data.id,
-          email, name,
+          email,
+          name,
           imageUrl: event.data.image_url,
           role: 'user'
         });

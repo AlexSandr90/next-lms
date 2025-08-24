@@ -11,7 +11,7 @@ const client = await clerkClient()
 export async function getCurrentUser({allData = false} = {}) {
   const {userId, sessionClaims, redirectToSignIn} = await auth()
 
-  if (userId !== null && sessionClaims.dbId === null) {
+  if (userId != null && sessionClaims.dbId == null) {
     redirect('/api/clerk/syncUsers');
   }
 
