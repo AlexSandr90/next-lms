@@ -55,7 +55,7 @@ export function ProductCard(
 
 async function Price({price}: { price: number }) {
   const coupon = await getUserCoupon();
-  if (price === 0 || coupon === null) return formatPrice(price);
+  if (price === 0 || coupon === null || coupon === undefined) return formatPrice(price);
 
   return (
     <div className="flex gap-2 items-baseline">
